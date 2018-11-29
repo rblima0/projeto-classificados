@@ -1,6 +1,34 @@
 <?php
 class Anuncios {
 
+    public function getTotalAnuncios() {
+        global $pdo;
+
+        $sql = "SELECT COUNT(*) as c FROM anuncios";
+        $sql = $pdo->prepare($sql);
+        $sql->execute();
+        
+        $row = $sql->fetch();
+        return $row['c'];
+    }
+
+    public function getUltimosAnuncios($page, $perPage) {
+        global $pdo;
+
+        $offset = ($page - 1) * $perPage;
+        $array = array();
+
+        $sql = "SELECT *, (select anuncios_imagens.url from anuncios_imagens where anuncios_imagens.id_anuncio = anuncios.id limit 1) as url, (select categorias.nome from categorias where categorias.id = anuncios.id_categoria) as categoria FROM anuncios ORDER BY id DESC LIMIT $offset, $perPage";
+        $sql = $pdo->prepare($sql);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+    }
+
     public function getAnuncios() {
         global $pdo;
         $array = array();
@@ -134,6 +162,9 @@ class Anuncios {
         if($sql->rowCount() > 0){
             $row = $sql->fetch();
             $id_anuncio = $row['id_anuncio'];
+            if (is_file("assets/img/anuncios/".$row['url'])){
+                unlink("assets/img/anuncios/".$row['url']);
+            }
         }
 
         $sql = "DELETE FROM anuncios_imagens WHERE id = :id";

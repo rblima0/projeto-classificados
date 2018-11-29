@@ -1,6 +1,16 @@
 <?php
 class Usuarios {
 
+    public function getTotalUsuarios() {
+        global $pdo;
+        $sql = "SELECT COUNT(*) as c FROM usuarios";
+        $sql = $pdo->prepare($sql);
+        $sql->execute();
+
+        $row = $sql->fetch();
+        return $row['c'];
+    }
+
     public function cadastrar($nome, $telefone, $email, $senha) {
         global $pdo;
         $sql = "SELECT id FROM usuarios WHERE email = :email";
