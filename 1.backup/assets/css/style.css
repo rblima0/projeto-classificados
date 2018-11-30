@@ -1,0 +1,31 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+.foto-item {
+    width: 150px;
+    height: 200px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+
+}
+
+.foto-item img {
+    width: 140px;
+}
+
+span {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+}
+
+.vendedor {
+    background-color: antiquewhite;
+    padding: 1em 0.5em;
+}
