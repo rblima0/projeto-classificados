@@ -36,8 +36,8 @@
                                 <img src="assets/images/anuncios/default.jpg" height="50" alt="Imagem padrão." />
                             <?php endif; ?>
                         </td>
-                        <td><?php echo $anuncio['titulo']; ?></td>
-                        <td><?php echo number_format($anuncio['valor'], 2); ?></td>
+                        <td><a href="produto.php?id=<?php echo $anuncio['id']; ?>"><?php echo $anuncio['titulo']; ?></a></td>
+                        <td><?php echo number_format($anuncio['valor'], 2, ',', '.'); ?></td>
                         <td>
                             <a class="btn btn-default" href="editar-anuncio.php?id=<?php echo $anuncio['id']; ?>">Editar</a>
                             <a class="btn btn-danger" href="excluir-anuncio.php?id=<?php echo $anuncio['id']; ?>">Excluir</a>
