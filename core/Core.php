@@ -35,9 +35,9 @@ class Core {
         // EXECUTA FUNÇÃO QUE NÃO SABEMOS EXATAMENTE O NOME
         call_user_func_array(array($c, $currentAction), $params);
 
-        echo '<hr/>';
+        /* echo '<hr/>';
         echo "CONTROLLER: " .$currentController."<br/>";
         echo "ACTION: " .$currentAction."<br/>";
-        echo "PARAMS: " .print_r($params, true)."<br/>";
+        echo "PARAMS: " .print_r($params, true)."<br/>"; */
     }
 }

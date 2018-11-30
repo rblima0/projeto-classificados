@@ -2,8 +2,6 @@
 session_start();
 require "config.php";
 
-/* echo "URL: " . $_GET['url']; */
-
 spl_autoload_register(function($class) {
     if(file_exists('controllers/'.$class.'.php')) {
         require 'controllers/'.$class.'.php';
