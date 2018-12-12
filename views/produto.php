@@ -4,11 +4,17 @@
             
         <div class="carousel slide" data-ride="carousel" id="imagensCarousel">
             <div class="carousel-inner" role="listbox">
+            <?php if(!empty($info['fotos'])): ?>
                 <?php foreach ($info['fotos'] as $chave => $foto): ?>
                 <div class="item <?php echo ($chave == '0') ? 'active':''; ?>">
                     <img src="<?php echo BASE_URL; ?>assets/images/anuncios/<?php echo $foto['url']; ?>" alt="Imagem <?php echo $foto['id']; ?>" />
                 </div>
                 <?php endforeach; ?>
+                <?php else : ?>
+                <div class="item active">
+                    <img src="<?php echo BASE_URL; ?>assets/images/anuncios/default-page.png" alt="Sem imagem" />
+                </div>
+                <?php endif; ?>
             </div>
             <a class="left carousel-control" href="#imagensCarousel" role="button" data-slide="prev">
                 <span><</span>
