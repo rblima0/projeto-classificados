@@ -10,15 +10,29 @@ class loginController extends controller {
             $email = addslashes($_POST['email']);
             $senha = $_POST['senha'];
 
-            if($u->login($email, $senha)) {
-                header("Location: ".BASE_URL);
-            } else {
-                ?>
+            if(isset($_SESSION['login_tentativas']) && $_SESSION['login_tentativas'] >= 3) { ?>
                 <div class="alert alert-danger">
-                    <strong>Usuário e/ou Senha errados !</strong>
+                    <strong>Seu acesso foi bloqueado !</strong><br/>
+                    <p>Excedeu número de tentativas</p>
                 </div>
-                <?php
+            <?php
+            } else {
+                if($u->login($email, $senha)) {
+                    header("Location: ".BASE_URL);
+                } else {
+                    if(!isset($_SESSION['login_tentativas'])) {
+                        $_SESSION['login_tentativas'] = 0;
+                    }
+                    $_SESSION['login_tentativas']++;
+                    ?>
+                    <div class="alert alert-danger">
+                        <strong>Usuário e/ou Senha errados !</strong><br/>
+                        <p>Tentativa: <?=$_SESSION['login_tentativas']?></p>
+                    </div>
+                    <?php
+                }
             }
+
         }
 
         $this->loadTemplate('login', $dados);
