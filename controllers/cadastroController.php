@@ -6,9 +6,10 @@ class cadastroController extends controller {
         $u = new Usuarios();
 
         if(isset($_POST['nome']) && !empty($_POST['nome'])) {
-            $nome = addslashes($_POST['nome']);
-            $telefone = addslashes($_POST['telefone']);
+            $nome = addslashes(trim($_POST['nome']));
+            $telefone = addslashes(trim($_POST['telefone']));
             $email = addslashes($_POST['email']);
+            $email = filter_var($email, FILTER_VALIDATE_EMAIL);
             $senha = $_POST['senha'];
 
             if(!empty($nome) && !empty($email) && !empty($senha)) {

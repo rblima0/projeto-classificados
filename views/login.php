@@ -10,6 +10,9 @@
             <label for="senha">Senha:</label>
             <input type="password" name="senha" id="senha" class="form-control" required />
         </div>
+        <div class="form-group">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+        </div>
         <input type="submit" value="Logar" class="btn btn-default">
     </form>
 </div>

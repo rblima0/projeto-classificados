@@ -22,7 +22,7 @@ class Usuarios extends model {
             $sql->bindValue(":nome", $nome);
             $sql->bindValue(":telefone", $telefone);
             $sql->bindValue(":email", $email);
-            $sql->bindValue(":senha", md5($senha));
+            $sql->bindValue(":senha", password_hash($senha, PASSWORD_BCRYPT));
             $sql->execute();
 
             return true;
@@ -32,15 +32,19 @@ class Usuarios extends model {
     }
 
     public function login($email, $senha) {
-        $sql = "SELECT id FROM usuarios WHERE email = :email AND senha = :senha";
+        $sql = "SELECT id, senha FROM usuarios WHERE email = :email";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(":email", $email);
-        $sql->bindValue(":senha", md5($senha));
         $sql->execute();
 
         if($sql->rowCount() > 0) {
             $dado = $sql->fetch();
-            $_SESSION['cLogin'] = $dado['id'];
+
+            if(password_verify($senha, $dado['senha'])) {
+                $_SESSION['cLogin'] = $dado['id'];
+            } else {
+                return false;
+            }
 
             return true;
         } else {
@@ -49,4 +53,3 @@ class Usuarios extends model {
     }
 
 }
-?>

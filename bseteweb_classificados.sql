@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Nov-2018 às 17:47
+-- Generation Time: 18-Dez-2018 às 00:37
 -- Versão do servidor: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -109,7 +109,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) CHARACTER SET utf8 NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `senha` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `senha` varchar(70) CHARACTER SET utf8 NOT NULL,
   `telefone` varchar(30) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -118,10 +118,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `telefone`) VALUES
-(1, 'Rodrigo', 'rblima0@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '11998855886'),
-(2, 'Kathy', 'kathy@gmail.com', '5583413443164b56500def9a533c7c70', '11998979694'),
-(3, 'Ana', 'ana@gmail.com', 'c33367701511b4f6020ec61ded352059', '11995969695'),
-(4, 'aninha', 'aninha@gmail.com', '71b3b26aaa319e0cdf6fdb8429c112b0', '11996929192');
+(1, 'Rodrigo', 'rblima0@gmail.com', '$2y$10$ObHFBCPsQK3DO3FlzfR2Ke8C6eZW1el6xIsLe8vJWJfIfC7vAkNvK', '11998855886'),
+(2, 'Kathy', 'kathy@gmail.com', '$2y$10$dDFkl6.gTm9BbqzOzdWaneT4TKU.o8YGqY3dndpYAbGWoszWkdPma', '11998979694'),
+(3, 'Ana', 'ana@gmail.com', '$2y$10$9sOGO7Cq1AfU6t5fT30oFeXuelLOn5rsyOfFUmqT/RPkrjfh5swgu', '11995969695');
 
 --
 -- Indexes for dumped tables
@@ -174,7 +173,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
